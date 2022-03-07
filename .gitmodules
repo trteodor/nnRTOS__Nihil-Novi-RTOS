@@ -4,3 +4,9 @@
 [submodule "thirdparty/Cmock"]
 	path = thirdparty/Cmock
 	url = https://github.com/ThrowTheSwitch/CMock
+[submodule "thirdparty"]
+	path = thirdparty
+	url = https://github.com/ThrowTheSwitch/Unity/
+[submodule "thirdparty/CMock"]
+	path = thirdparty/CMock
+	url = https://github.com/ThrowTheSwitch/CMock

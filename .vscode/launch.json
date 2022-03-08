@@ -27,7 +27,7 @@
         {
             "name": "Cortex Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./.build_debug/CompilationOutputFiles/MCU_UART_Driver/MCU_UART_Driver.elf",
+            "executable": "./.build_debug/CompilationOutputFiles/BasicRoundRobin/BasicRoundRobin.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",

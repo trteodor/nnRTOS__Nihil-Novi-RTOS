@@ -113,6 +113,12 @@ Default_Handler:
 Infinite_Loop:
   b  Infinite_Loop
   .size  Default_Handler, .-Default_Handler
+
+    .section  .text.HardFault_Handler,"ax",%progbits
+HardFault_Handler:
+Infinite_LoopHf:
+  b  Infinite_LoopHf
+  .size  HardFault_Handler, .-HardFault_Handler
 /******************************************************************************
 *
 * The minimal vector table for a Cortex M3. Note that the proper constructs

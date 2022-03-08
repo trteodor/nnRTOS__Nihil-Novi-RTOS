@@ -1,3 +1,4 @@
 # Simple Nihil Novi RTOS! :) 
 
-In this repository i'll try create my own RTOS for educational purposes
+Directory examples contain few examples.
+* Now i prepared only one example called "BasicRoundRobin" which implement total basic frist version of RoundRobin scheduler.

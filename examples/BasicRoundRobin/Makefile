@@ -1,7 +1,8 @@
 
 SRC +=  examples/BasicRoundRobin/src/main.c
-SRC +=  examples/src/osKernel.c 
-ASM += examples/src/osKernelAsm.s
+SRC +=  examples/BasicRoundRobin/src/osKernel.c 
+
+ASM += examples/BasicRoundRobin/src/osKernelAsm.s
 
 ASM += common/startup_stm32f407xx.s
 

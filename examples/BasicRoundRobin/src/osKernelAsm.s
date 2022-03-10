@@ -8,6 +8,9 @@
 .type SysTick_Handler, function
 .word SysTick_Handler
 
+.type osSchedulerLaunch, function
+.word osSchedulerLaunch
+
 @ //Dobra wiec on to poprostu te r0,r1,r2 automatycznie zrzuci
 @ //A gdy wraca to zna wierzcholek stosu - wiec znowu zrzuci automatycznie bo wrocil
 @ //Ale ze ma inny adres wierzcholka stosu no to zdejmie z innego stosu te rejestry automatycznie

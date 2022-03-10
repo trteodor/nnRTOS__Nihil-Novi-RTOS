@@ -11,6 +11,7 @@
         "sstream": "c",
         "main.h": "c",
         "config.h": "c",
-        "contable.h": "c"
+        "contable.h": "c",
+        "cmsis_compiler.h": "c"
     }
 }

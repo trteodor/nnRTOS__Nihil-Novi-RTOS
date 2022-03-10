@@ -69,6 +69,7 @@ volatile uint32_t Time=0;
 
  void osThreadYield(void)
  {
+	 	SysTick->VAL = 0;
 	    INTCTRL = 0x04000000;
 
  }

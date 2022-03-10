@@ -27,7 +27,7 @@
         {
             "name": "Cortex Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./.build_debug/CompilationOutputFiles/BasicRoundRobin/BasicRoundRobin.elf",
+            "executable": "./.build_debug/CompilationOutputFiles/AddNewTask/AddNewTask.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",

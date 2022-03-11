@@ -5,13 +5,13 @@
 
 .global currentPt
 .global PendSV_Handler
-.global osSchedulerLaunch
-.global osPriorityScheduler
+.global nnOsSchedulerLaunch
+.global nnOsPriorityScheduler
 .type PendSV_Handler, function
 .word PendSV_Handler
 
-.type osSchedulerLaunch, function
-.word osSchedulerLaunch
+.type nnOsSchedulerLaunch, function
+.word nnOsSchedulerLaunch
 
 @ Dobra wiec on to poprostu te r0,r1,r2 automatycznie zrzuci
 @ A gdy wraca to zna wierzcholek stosu - wiec je przywroci automatycznie bo wraca
@@ -27,7 +27,7 @@ PendSV_Handler:          @save r0,r1,r2,r3,r12,lr,pc,psr
                 STR 	  SP,[R1]
 
                 PUSH	  {R0,LR}
-                BL		  osPriorityScheduler
+                BL		  nnOsPriorityScheduler
                 POP		  {R0,LR}
                 LDR 	  R1,[R0]     @R1 = currentPt i.e New thread
                 LDR 	  SP,[R1]
@@ -39,7 +39,7 @@ PendSV_Handler:          @save r0,r1,r2,r3,r12,lr,pc,psr
 	
 	
 
-osSchedulerLaunch:
+nnOsSchedulerLaunch:
             LDR     R0, =currentPt         
             LDR     R2, [R0]       @ R2 =currentPt       
             LDR     SP, [R2]       @SP = currentPt->stackPt    

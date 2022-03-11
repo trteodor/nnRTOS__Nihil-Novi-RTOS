@@ -17,7 +17,7 @@
  *     - const attribute removed from the osXxxxDef_t typedef's
  *     - const attribute added to the osXxxxDef macros
  *    Added: osTimerDelete, osMutexDelete, osSemaphoreDelete
- *    Added: osKernelInitialize
+ *    Added: nnOsKernelInitialize
  * Version 1.02
  *    Control functions for short timeouts in microsecond resolution:
  *    Added: osKernelSysTick, osKernelSysTickFrequency, osKernelSysTickMicroSec
@@ -231,8 +231,8 @@ typedef struct  {
  
 /// Initialize the RTOS Kernel for creating objects.
 /// \return status code that indicates the execution status of the function.
-/// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
-osStatus osKernelInitialize (void);
+/// \note MUST REMAIN UNCHANGED: \b nnOsKernelInitialize shall be consistent in every CMSIS-RTOS.
+osStatus nnOsKernelInitialize (void);
  
 /// Start the RTOS Kernel.
 /// \return status code that indicates the execution status of the function.

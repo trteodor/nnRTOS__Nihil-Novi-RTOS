@@ -1,10 +1,7 @@
-/*
-   -schedular
-	 -Thread Control Block
-	 -Stack
-*/
+#include "stm32f407xx.h"
+/*Here Include Your Device header (from CMSIS Library) */
 
-#include "osKernel.h"
+
 
 #define NUM_OF_THREADS 8
 #define STACKSIZE 100
@@ -17,7 +14,7 @@ typedef void(*taskT)(void);
 #define BUS_FREQ		16000000
 
 uint32_t MILLIS_PRESCALER;
-void osSchedulerLaunch(void);
+void nnOsSchedulerLaunch(void);
 
 /*Systick priority register*/
 #define SYSPRI3         (*((volatile uint32_t *)0xE000ED20))
@@ -62,22 +59,6 @@ int32_t TCB_STACK[NUM_OF_THREADS][STACKSIZE];
 void osKernelStackInit(int i){
    tcbs[i].stackPt =  &TCB_STACK[i][STACKSIZE -16];//StackPointer
 	 TCB_STACK[i][STACKSIZE -1] =  0x01000000;
-	
-	TCB_STACK[i][STACKSIZE-3] = 0x14141414;  //R14
-	TCB_STACK[i][STACKSIZE-4] = 0x12121212;  //R12
-	TCB_STACK[i][STACKSIZE-5] = 0x03030303;  //R3
-	TCB_STACK[i][STACKSIZE-6] = 0x02020202;  //R2
-	TCB_STACK[i][STACKSIZE-7] = 0x01010101;  //R1
-	TCB_STACK[i][STACKSIZE-8] = 0x00000000;  //R0
-	  /*We have to save manually*/	
-	TCB_STACK[i][STACKSIZE-9] = 0x11111111;  //R11
-	TCB_STACK[i][STACKSIZE-10] = 0x10101010; //R10
-	TCB_STACK[i][STACKSIZE-11] = 0x09090909; //R9
-	TCB_STACK[i][STACKSIZE-12] = 0x08080808; //R8
-	TCB_STACK[i][STACKSIZE-13] = 0x07070707; //R7
-	TCB_STACK[i][STACKSIZE-14] = 0x06060606; //R6
-	TCB_STACK[i][STACKSIZE-15] = 0x05050505; //R5
-	TCB_STACK[i][STACKSIZE-16] = 0x04040404; //R4
 }
 
 
@@ -142,7 +123,7 @@ uint8_t osKernelAddThreads( void(*task0)(void),uint32_t p0,
 	osKernelStackInit(3);TCB_STACK[3][STACKSIZE-2] = (int32_t)(task3); /*Init PC*/
 	osKernelStackInit(4);TCB_STACK[4][STACKSIZE-2] = (int32_t)(task4); /*Init PC*/
 	osKernelStackInit(5);TCB_STACK[5][STACKSIZE-2] = (int32_t)(task5); /*Init PC*/
-  osKernelStackInit(6);TCB_STACK[6][STACKSIZE-2] = (int32_t)(task6); /*Init PC*/
+	osKernelStackInit(6);TCB_STACK[6][STACKSIZE-2] = (int32_t)(task6); /*Init PC*/
 	osKernelStackInit(7);TCB_STACK[7][STACKSIZE-2] = (int32_t)(task7); /*Init PC*/
 	
 	currentPt = &tcbs[0];
@@ -172,7 +153,7 @@ uint8_t osKernelAddThreads( void(*task0)(void),uint32_t p0,
 
 
 
-void osKernelInit(void)
+void nnOsKernelInit(void)
 {
 	MILLIS_PRESCALER =  (BUS_FREQ/1000);
 	
@@ -190,7 +171,7 @@ void osKernelLaunch(uint32_t quanta)
 	 SYSPRI3 =(SYSPRI3&0x00FFFFFF)|0xE0000000; // priority 7
 	 SysTick->CTRL =  0x00000007;
 	
-	osSchedulerLaunch();
+	nnOsSchedulerLaunch();
 	
 
 }
@@ -209,7 +190,7 @@ void  SysTick_Handler(void){
 
 uint32_t period_tick;
 
-void osPriorityScheduler(void)
+void nnOsPriorityScheduler(void)
 {
 	  tcbType *_currentPt = currentPt;
   	tcbType *nextThreadToRun = _currentPt;

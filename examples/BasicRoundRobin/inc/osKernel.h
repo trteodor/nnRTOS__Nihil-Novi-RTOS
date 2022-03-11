@@ -5,7 +5,7 @@
 #include <stdint.h>
 void osKernelLaunch(uint32_t quanta);
 
-void osKernelInit(void);
+void nnOsKernelInit(void);
 
 uint8_t osKernelAddThreads(void(*task0)(void),
 													 void(*task1)(void),

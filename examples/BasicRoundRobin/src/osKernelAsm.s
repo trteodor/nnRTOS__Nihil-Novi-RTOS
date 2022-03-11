@@ -3,13 +3,13 @@
 .syntax unified
 .global currentPt
 .global SysTick_Handler
-.global osSchedulerLaunch
+.global nnOsSchedulerLaunch
 .thumb
 .type SysTick_Handler, function
 .word SysTick_Handler
 
-.type osSchedulerLaunch, function
-.word osSchedulerLaunch
+.type nnOsSchedulerLaunch, function
+.word nnOsSchedulerLaunch
 
 @ //Dobra wiec on to poprostu te r0,r1,r2 automatycznie zrzuci
 @ //A gdy wraca to zna wierzcholek stosu - wiec znowu zrzuci automatycznie bo wrocil
@@ -31,7 +31,7 @@ SysTick_Handler:          @save r0,r1,r2,r3,r12,lr,pc,psr
 	
 	
 
-osSchedulerLaunch:
+nnOsSchedulerLaunch:
             LDR     R0, =currentPt         
             LDR     R2, [R0]       @ R2 =currentPt       
             LDR     SP, [R2]       @SP = currentPt->stackPt    

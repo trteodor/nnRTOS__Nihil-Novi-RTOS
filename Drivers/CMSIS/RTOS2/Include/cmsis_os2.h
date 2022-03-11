@@ -306,7 +306,7 @@ typedef struct {
  
 /// Initialize the RTOS Kernel.
 /// \return status code that indicates the execution status of the function.
-osStatus_t osKernelInitialize (void);
+osStatus_t nnOsKernelInitialize (void);
  
 ///  Get RTOS Kernel Information.
 /// \param[out]    version       pointer to buffer for retrieving version information.

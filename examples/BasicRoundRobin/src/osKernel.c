@@ -5,7 +5,7 @@
 
 
 
-void  osSchedulerLaunch(void);
+void  nnOsSchedulerLaunch(void);
 
 #define NUM_OF_THREADS  3        
 #define STACKSIZE   100      
@@ -47,7 +47,7 @@ uint8_t osKernelAddThreads(void(*task0)(void),void(*task1)(void),void(*task2)(vo
  __enable_irq();
 		return 1;              
 }
-void osKernelInit(void)
+void nnOsKernelInit(void)
 {
      __disable_irq();
 		 MILLIS_PRESCALER=(BUS_FREQ/1000);
@@ -61,7 +61,7 @@ void osKernelLaunch(uint32_t quanta)
   SYSPRI3 =(SYSPRI3&0x00FFFFFF)|0xE0000000;
 
 	SysTick->CTRL =0x00000007;
-	osSchedulerLaunch();
+	nnOsSchedulerLaunch();
 }
 
 

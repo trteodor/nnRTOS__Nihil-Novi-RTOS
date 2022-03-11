@@ -87,7 +87,7 @@ void Task7(void)
 
 int main(void)
 {
-	osKernelInit();
+	nnOsKernelInit();
 	osKernelAddThreads(&Task0,5,&Task1,1,&Task2,1,&Task3,2,&Task4,5,&Task5,1,&Task6,2,&Task7,3);
 	osKernelLaunch(QUANTA);
 }

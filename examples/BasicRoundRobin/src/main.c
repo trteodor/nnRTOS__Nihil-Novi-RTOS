@@ -37,7 +37,7 @@ void Task2(void)
 
 int main(void)
 {
-	osKernelInit();
+	nnOsKernelInit();
 	osKernelAddThreads(&Task0,&Task1,&Task2);
 	osKernelLaunch(QUANTA);
 

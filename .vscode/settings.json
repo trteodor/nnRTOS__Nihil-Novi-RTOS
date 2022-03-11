@@ -12,6 +12,9 @@
         "main.h": "c",
         "config.h": "c",
         "contable.h": "c",
-        "cmsis_compiler.h": "c"
+        "cmsis_compiler.h": "c",
+        "oskernel.h": "c",
+        "stdint.h": "c",
+        "stm32f407xx.h": "c"
     }
 }

@@ -6,7 +6,7 @@ Directory "examples" contain few examples.
 
 * In Directory "nnRtos" you will see sources for nnRtos and Port for Cortex-M4 (tested with stm32f407) 
 
-    * IMPORTANT!!! check file "port.c" to verify your Device Header (eventually compilation process will return fail)
+    * IMPORTANT!!! check file "port.c" to verify your (included from CMSIS library) Device Header (eventually compilation process will return fail)
 
 **_In Directory "examples" i added  example "BasicRoundRobic". This example use him own sources to show maximally minimum implementation RTOS in CM4. This example also implement basic RoundRobin scheduler._**
 

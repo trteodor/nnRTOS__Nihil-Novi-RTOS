@@ -1,5 +1,5 @@
 
-#include "port.h"
+#include "nnRTOS.h"
 #include "stm32f4xx.h"                  // Device header
 
 #define	QUANTA	10
@@ -88,16 +88,15 @@ void Task7(void)
 
 int main(void)
 {
-	osKernelInit();
-	osKernelAddThreads(&Task0,5,&Task1,1,&Task2,1,&Task3,2,&Task4,5,&Task5,1,&Task6,2,&Task7,3);
-	osKernelLaunch(QUANTA);
-}
-
-
-void EXTI15_10_IRQHandler(void){
-
-	//osSignalSet(&edgeSem);
-	 EXTI->PR =0x2000;
-  
+	nnOsKernelInit();
+	if(nnOsAddThread(&Task7,1) != Call_ok)
+	{
+		while(1); //Error!
+	}
+	if(nnOsAddThread(&Task6,1) != Call_ok)
+	{
+		while(1); //Error!
+	}
+	nnOsKernelLaunch(QUANTA);
 }
 

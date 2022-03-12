@@ -14,11 +14,7 @@ Directory "examples" contain few examples.
 ScreenShot from debugging nnRTOS:
 
 
-![nnFifoDebugSS](https://github.com/trteodor/nnRTOS__Nihil-Novi-RTOS/blob/master/pictures/nnFifoDebugSe.png)
-
-Board Used to tests - well known Discovery STM32F407:
-
-![Board](https://github.com/trteodor/nnRTOS__Nihil-Novi-RTOS/blob/master/pictures/usedBoard.png)
+![nnFifoDebugSS](https://github.com/trteodor/nnRTOS__Nihil-Novi-RTOS/blob/master/pictures/nnFifoDebugSs.png)
 
 * You are ready to start adventure with this RTOS when you have this tools in your environment (environment variables)!
 
@@ -29,7 +25,7 @@ Board Used to tests - well known Discovery STM32F407:
     * make 4.2.1
 
         
-Finally:
+And:
 
  **_Call "make" in this project at him location to show this information:_**
 

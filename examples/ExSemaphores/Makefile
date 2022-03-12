@@ -1,13 +1,20 @@
+#Example sources:
+SRC +=  examples/ExSemaphores/src/main.c
 
-SRC +=  examples/PrioritySchedule/src/main.c
-
+#nnRTOS sources
+SRC += nnRtos/src/nnKernel.c
 SRC += nnRtos/port/CM4F/port.c
+SRC += nnRtos/src/semaphores.c
+SRC += nnRtos/src/queues.c
+#nnRTOS asm file
 ASM += nnRtos/port/CM4F/portAsm.s
 
-
+#Device Startup
 ASM += common/startup_stm32f407xx.s
 
-INC_DIR += -InnRtos/inc/CM4F/
+INC_DIR += -InnRtos
+INC_DIR += -InnRtos/inc
+INC_DIR += -InnRtos/port/CM4F
 INC_DIR += -Icommon/Inc
 INC_DIR += -IDrivers/CMSIS/Device/ST/STM32F4xx/Include
 INC_DIR += -IDrivers/CMSIS/Include

@@ -26,7 +26,7 @@ int32_t TCB_STACK[MAX_NUM_OF_THREADS+1][STACKSIZE];
 
 
 nn_CallRes_t nnOsAddThread(void(*taskFunName)(void),uint32_t priority);
-void nnOs_IncSysTime(void);
+void nnOsSysTickInc(void);
 
 
 
@@ -84,8 +84,8 @@ return retVal;
 
 void nnOsKernelInit(void)
 {
-	// nnOs_RegisterIncSysTimeFuntion(&nnOs_IncSysTime);
-	nnOsAddThread(&nnOsIdleTask,255);
+	nnOsRegisterSysIncrementCb(&nnOsSysTickInc);
+	nnOsAddThread(&nnOsIdleTask,253);
 	/*After kernel start frist Called Task will be Idle - until frist switch */
     currentPt = &tcbs[0]; //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	MILLIS_PRESCALER =  (BUS_FREQ/1000);
@@ -100,6 +100,18 @@ void nnOsThreadYield(void){
 	nnPort_ThreadYield();
 }
 
+void nnOsSysTickInc(void)
+{
+	nnOs_SystemTime++;
+
+	//I'am not sure where put it
+	for(int i =0;i<=AddedTasksCounter;i++){
+		if(tcbs[i].sleepTime >0){
+		tcbs[i].sleepTime--;
+		}
+	}
+}
+
 uint32_t nnOs_GetSystemTime(void)
 {
 	return nnOs_SystemTime;
@@ -108,28 +120,27 @@ uint32_t nnOs_GetSystemTime(void)
 //Function called from Port Interrupt - for example from PendSVIrq or SysTick
 void nnOsPriorityScheduler(void) //0 - most important task(highest priority ) -> 255 lowest priority
 {
-	  tcbType *_currentPt = currentPt;
-  	tcbType *nextThreadToRun = _currentPt;
-	  uint8_t highestPriorityFound = 255;
+	tcbType *_currentPt = currentPt;
+	tcbType *nextThreadToRun = _currentPt;
+	uint8_t highestPriorityFound = 255;
 	
-	 do{
-		  _currentPt =_currentPt->nextPt;
-		  if((_currentPt->priority <highestPriorityFound)&&
-				 (_currentPt->blocked ==0)&&
-			   (_currentPt->sleepTime ==0)){
-				 
-				 nextThreadToRun =_currentPt;
-					highestPriorityFound = _currentPt->priority; 
-				 }
-	  }while(_currentPt != currentPt);
+	do{
+		_currentPt =_currentPt->nextPt;
+		if((_currentPt->priority < highestPriorityFound)&&
+				(_currentPt->blocked ==0)&&
+			(_currentPt->sleepTime ==0)){
+				
+				nextThreadToRun =_currentPt;
+				highestPriorityFound = _currentPt->priority; 
+				}
+	}while(_currentPt != currentPt);
  
-	  currentPt  =  nextThreadToRun;
-
+	currentPt  =  nextThreadToRun;
 }
 
 void nnOsThreadSleep(uint32_t sleep_time){
 	ENTRY_CRITCAL();
 	currentPt->sleepTime =  sleep_time;
-	LEAVE_CIRITAL();
 	nnOsThreadYield();
+	LEAVE_CIRITAL();
 }

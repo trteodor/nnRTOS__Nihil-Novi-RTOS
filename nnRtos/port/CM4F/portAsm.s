@@ -4,11 +4,20 @@
 .thumb
 
 .global currentPt
+
+
 .global PendSV_Handler
+.global SysTick_Handler
 .global nnOsSchedulerLaunch
 .global nnOsPriorityScheduler
+
+.global SysTickCHandler
+
 .type PendSV_Handler, function
 .word PendSV_Handler
+
+.type SysTick_Handler, function
+.word SysTick_Handler
 
 .type nnOsSchedulerLaunch, function
 .word nnOsSchedulerLaunch
@@ -35,7 +44,14 @@ PendSV_Handler:          @save r0,r1,r2,r3,r12,lr,pc,psr
                 POP		  {R4-R11}
                 CPSIE	  I
                 BX		  LR
-	
+
+SysTick_Handler:          @save r0,r1,r2,r3,r12,lr,pc,psr      @It's not clear my why - but i has to write this fun in assembly - but it work :) 
+                CPSID   I       
+                PUSH {LR}
+                BL      SysTickCHandler     
+                POP {LR}
+                CPSIE   I                  
+                BX		  LR
 	
 	
 

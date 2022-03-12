@@ -15,6 +15,7 @@
         "cmsis_compiler.h": "c",
         "oskernel.h": "c",
         "stdint.h": "c",
-        "stm32f407xx.h": "c"
+        "stm32f407xx.h": "c",
+        "nnrtos.h": "c"
     }
 }

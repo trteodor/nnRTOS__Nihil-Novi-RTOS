@@ -87,12 +87,12 @@ ExecuteCompilation_C_Files += $(HelperVariable)/$(1)
 ExecuteCompilation_ASM_Files += $(HelperVariable)/$(1)
 
 $(HelperVariable)/$(1): $$(OBJECTS) Makefile
-	$(CC) $(OBJECTS) $(ASMOBJECTS) $$(H_INC_DIR) $$(LDFLAGS) -Wl,-Map=$$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).map,--cref -Wl,--gc-sections \
+	@$(CC) $(OBJECTS) $(ASMOBJECTS) $$(H_INC_DIR) $$(LDFLAGS) -Wl,-Map=$$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).map,--cref -Wl,--gc-sections \
 	-o $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf
-	$(HEX) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).hex
-	$(BIN) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).bin
-	$(LST) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf -l > $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F)Felf.s #-Mforce-thumb
-	$(LST) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).hex -Mforce-thumb > $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F)fHex.s #-Mforce-thumb
+	@$(HEX) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).hex
+	@$(BIN) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).bin
+	@$(LST) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).elf -l > $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F)Felf.s #-Mforce-thumb
+	@$(LST) $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F).hex -Mforce-thumb > $$(BUILD_DIR)/CompilationOutputFiles$$@/$$(@F)fHex.s #-Mforce-thumb
 	@echo ---------------------------------------------------------------------------------------------------------
 	@echo -------------------Compilation Succesfull----------------------------------------------------------------
 	@echo ---------------------------------------------------------------------------------------------------------
@@ -113,7 +113,8 @@ define ExecuteCompilation_ASM_FilesDefine
 ExecuteCompilation_ASM_Files += $(1) $(2)
 $(1):
 $(2): $(1)
-	$(AS) -c $$(CFLAGS) $(H_INC_DIR) $$< -o $$@
+	@$(AS) -c $$(CFLAGS) $(H_INC_DIR) $$< -o $$@
+	@echo ASM $$@
 
 endef
 
@@ -123,7 +124,9 @@ ExecuteCompilation_C_Files += $(1) $(2)
 
 $(1):
 $(2): $(1)	
-	$(CC) -c $$(CFLAGS) $(H_INC_DIR) -Wa,-a,-ad,-alms=$$(@:.o=.lst)  $$< -o $$@
+	@$(CC) -c $$(CFLAGS) $(H_INC_DIR) -Wa,-a,-ad,-alms=$$(@:.o=.lst)  $$< -o $$@
+	@echo CC $$@
+
 
 endef
 ########################################################################################################################

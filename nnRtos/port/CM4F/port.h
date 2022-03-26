@@ -15,6 +15,6 @@ void nnPort_ThreadYield(void);
 
 
 //Export Global 
-uint32_t nnOs_SystemTime;
+extern uint32_t nnOs_SystemTime;
 
 #endif

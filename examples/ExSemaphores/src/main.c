@@ -97,7 +97,7 @@ int main(void)
 	{
 		while(1); //Error!
 	}
-	if(nnOsAddThread(&Task6,1) != Call_ok)
+`	if(nnOsAddThread(&Task6,1) != Call_ok)
 	{
 		while(1); //Error!
 	}

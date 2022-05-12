@@ -38,7 +38,10 @@
                 "target/stm32f4x.cfg"
             ],
             "interface": "swd",
-            "runToMain": true,
+            "showDevDebugOutput": "raw",
+            // "overrideLaunchCommands": ["monitor continue"],
+            // "overrideRestartCommands": ["monitor pause","monitor runMacro $reset"],
+            "runToMain": false,
         }
     ]
 }

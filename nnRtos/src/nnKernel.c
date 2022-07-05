@@ -44,7 +44,8 @@ __attribute__((weak))void nnOsIdleTask(void) /*If you want use it - please overw
 static void nnOsThreadStackInit(int i)
 {
    tcbs[i].stackPt =  &TCB_STACK[i][STACKSIZE -16];//StackPointer
-	 TCB_STACK[i][STACKSIZE -1] =  0x01000000;
+	 TCB_STACK[i][STACKSIZE -1] =  0x01000000; /*The T (24)bit in EPSR must be one always instruction pop may overwrite it 
+  												This is reset value - 0x01000000*/ 
 }
 
 nn_CallRes_t nnOsAddThread(void(*taskFunName)(void),uint32_t priority)

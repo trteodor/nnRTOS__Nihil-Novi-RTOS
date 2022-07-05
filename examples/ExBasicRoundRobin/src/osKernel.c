@@ -26,7 +26,8 @@ int32_t TCB_STACK[NUM_OF_THREADS][STACKSIZE];
 
 void osKernelStackInit(int i){
   tcbs[i].stackPt = &TCB_STACK[i][STACKSIZE-16]; 
-  TCB_STACK[i][STACKSIZE-1] = 0x01000000;  
+  TCB_STACK[i][STACKSIZE-1] = 0x01000000;   /*The T (24)bit in EPSR must be one always instruction pop may overwrite it 
+  												This is reset value - 0x01000000*/
 }
 
 uint8_t osKernelAddThreads(void(*task0)(void),void(*task1)(void),void(*task2)(void))
